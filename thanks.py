@@ -1,20 +1,20 @@
 import re
+import configparser
 
 #includeLinkedIn = False
 includeLinkedIn = True
 
-name = str(input('Enter your name\n'))
-company = str(input('Enter the company name\n'))
-role = str(input('Enter the role\n'))
-email = str(input('Enter your email address\n'))
+cnfg = configparser.ConfigParser()
+cnfg.read('configfile.ini')
+
+name = str(cnfg['SectionOne']['NAME'])
+company = str(cnfg['SectionOne']['COMPANY'])
+role = str(cnfg['SectionOne']['ROLE'])
+email = str(cnfg['SectionOne']['EMAIL'])
+linkedin = str(cnfg['SectionOne']['LINKEDIN'])
 
 genStr = ""
 templateHolder=""
-
-if includeLinkedIn:
-	linkedin=""
-	with open('linkedin.txt', 'r') as f:
-		linkedin = f.readline()
 
 with open('template.txt', 'r') as f:
 	for ff in f.readlines():
