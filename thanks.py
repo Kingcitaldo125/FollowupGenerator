@@ -24,17 +24,17 @@ with open('template.txt', 'r') as f:
 	for ff in f.readlines():
 		if not includeLinkedIn and not includeGithub:
 			m = re.search(r'LinkedIn|GitHub', ff, re.M|re.I)
-			if not m: # if the line is not the linkedin line, add it to the holder
+			if not m: # if the line is not the linkedin or GitHub line, add it to the holder
 				templateHolder += str(ff)
 		elif not includeGithub:
 			m = re.search(r'GitHub', ff, re.M|re.I)
-			if not m: # if the line is not the linkedin line, add it to the holder
+			if not m: # if the line is not the github line, add it to the holder
 				templateHolder += str(ff)
 		elif not includeLinkedIn:
 			m = re.search(r'LinkedIn', ff, re.M|re.I)
 			if not m: # if the line is not the linkedin line, add it to the holder
 				templateHolder += str(ff)
-		else:
+		else: # include both GitHub and LinkedIn details
 			templateHolder += str(ff)
 
 templateHolder = re.sub(r'\[company\]', company, templateHolder, re.M|re.I)
